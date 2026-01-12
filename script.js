@@ -1,19 +1,63 @@
 const password = "Epicode123";
+const maxTrials = 3;
 
-let userTry = 0;
+function input(userTrials) {
+  return prompt(
+    `Prova ad indovinare la password! (${userTrials} - ${maxTrials})`
+  );
+}
+
+function risultato(userTrials) {
+  if (userTrials < maxTrials)
+    alert(
+      `Hai vinto! Ci sei riuscito in ${userTrials} ${
+        userTrials === 1 ? "tentativo" : "tentativi"
+      }`
+    );
+  else alert("Hai perso.");
+}
+
+/**
+ * Prova con ciclo Do While
+ */
+
+let trials = 0;
 
 do {
-  userTry++;
-  let prova = prompt(`Prova ad indovinare la password! (${userTry} - 3)`);
-  if (prova === password) {
+  trials++;
+  if (input(trials) === password) {
     break;
   }
-} while (userTry < 3);
+} while (trials < maxTrials);
 
-if (userTry < 3)
-  alert(
-    `Hai vinto! Ci sei riuscito in ${userTry} ${
-      userTry === 1 ? "tentativo" : "tentativi"
-    }`
-  );
-else alert("Hai perso.");
+risultato(trials);
+
+/**
+ * Prova con ciclo While
+ */
+
+trials = 0;
+
+while (trials < maxTrials) {
+  trials++;
+  if (input(trials) === password) {
+    break;
+  }
+}
+
+risultato(trials);
+
+/**
+ * Prova con ciclo For
+ */
+
+trials = 0;
+
+for (i = 0; i < maxTrials; i++) {
+  trials++;
+  if (input(trials) === password) {
+    break;
+  }
+}
+
+risultato(trials);
